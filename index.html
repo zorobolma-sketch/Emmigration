@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmigration | هجرتك إلى أوروبا وكندا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root { --primary: #1a5f7a; --accent: #c9d6df; --text: #333; }
+        body { font-family: 'Cairo', sans-serif; background: #ffffff; color: var(--text); margin: 0; padding: 0; }
+        
+        header { background: #fff; padding: 20px; text-align: center; border-bottom: 1px solid #eee; }
+        .logo { font-size: 24px; font-weight: bold; color: var(--primary); text-transform: uppercase; }
+
+        .hero { padding: 60px 20px; text-align: center; background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%); }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        
+        .form-card { background: #fff; padding: 30px; border-radius: 15px; border: 1px solid #eaeaea; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        input, textarea, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        
+        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #13455a; }
+
+        #success-msg { display: none; text-align: center; padding: 40px; }
+        .wa-btn { background: #25d366; display: inline-block; padding: 15px 30px; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 20px; }
+        
+        footer { text-align: center; padding: 40px; font-size: 12px; color: #999; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">EMMIGRATION</div>
+    </header>
+
+    <section class="hero" data-aos="fade-down">
+        <h1>ابدأ رحلتك إلى أوروبا وكندا</h1>
+        <p>نحن نساعدك في تأمين مستقبلك المهني من خلال طرق قانونية وموثوقة.</p>
+    </section>
+
+    <div class="container">
+        <div class="form-card" id="form-container" data-aos="fade-up">
+            <form id="emigration-form">
+                <label>الاسم الكامل</label>
+                <input type="text" name="fullName" placeholder="أدخل اسمك بالكامل" required>
+
+                <label>رقم الواتساب</label>
+                <input type="tel" name="whatsapp" placeholder="+212 ..." required>
+
+                <label>تاريخ الميلاد</label>
+                <input type="date" name="birthDate" required>
+
+                <label>الدولة</label>
+                <input type="text" name="country" placeholder="دولة الإقامة الحالية" required>
+
+                <label>رسالتك (التخصص أو المهنة)</label>
+                <textarea name="message" rows="4"></textarea>
+
+                <button type="submit" id="submit-btn">إرسال الطلب الآن</button>
+            </form>
+        </div>
+
+        <div id="success-msg">
+            <h2 style="color: var(--primary);">تم استلام طلبك بنجاح!</h2>
+            <p>لإكمال عملية التحقق وتسريع ملفك، يرجى التواصل معنا عبر الواتساب مباشرة.</p>
+            <a href="https://wa.me/447490908644?text=Hello, I just submitted my application for emigration." class="wa-btn">
+                تأكيد عبر الواتساب 💬
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Emmigration Services. All rights reserved. <br>
+        Professionalism . Trust . Success
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // PASTE YOUR URL HERE
+        const form = document.getElementById('emigration-form');
+        const formContainer = document.getElementById('form-container');
+        const successMsg = document.getElementById('success-msg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('submit-btn').innerText = "جاري الإرسال...";
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    formContainer.style.display = 'none';
+                    successMsg.style.display = 'block';
+                })
+                .catch(error => alert('حدث خطأ، يرجى المحاولة لاحقاً'));
+        });
+    </script>
+</body>
+</html>
